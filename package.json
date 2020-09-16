@@ -1,0 +1,27 @@
+{
+    "name": "@sharknoon/personal-site",
+    "version": "1.0.0",
+    "description": "A little site about me",
+    "scripts": {
+        "build": "webpack --mode=production"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Sharknoon/personal-site.git"
+    },
+    "author": "Josua Frank",
+    "license": "Apache-2.0",
+    "homepage": "https://josua-frank.de",
+    "dependencies": {
+        "@exampledev/new.css": "^1.1.3"
+    },
+    "devDependencies": {
+        "clean-webpack-plugin": "^3.0.0",
+        "css-loader": "^4.3.0",
+        "file-loader": "^6.1.0",
+        "html-webpack-plugin": "^4.4.1",
+        "style-loader": "^1.2.1",
+        "webpack": "^4.44.1",
+        "webpack-cli": "^3.3.12"
+    }
+}
