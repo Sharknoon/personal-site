@@ -15,7 +15,7 @@ jobs:
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin 
         
       - name: Build Docker Image
-        run: docker build -t sharknoon/personal-site/personal-site:latest .
+        run: docker build -t docker.pkg.github.com/sharknoon/personal-site/personal-site:latest .
         
       - name: Push Image to Registry
-        run: docker push sharknoon/personal-site/personal-site:latest
+        run: docker push docker.pkg.github.com/sharknoon/personal-site/personal-site:latest
