@@ -27,6 +27,7 @@ jobs:
         with:
           command: sudo docker stop personal-site; sudo docker rm personal-site; sudo docker rmi docker.pkg.github.com/sharknoon/personal-site/personal-site
           host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
           username: ${{ secrets.SERVER_USER }}
           passphrase: ${{ secrets.SERVER_PASSPHRASE }}
           privateKey: ${{ secrets.SERVER_KEY}}
@@ -35,6 +36,7 @@ jobs:
         with:
           command: sudo docker run -d --name personal-site --network traefik-net --restart=always docker.pkg.github.com/sharknoon/personal-site/personal-site
           host: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
           username: ${{ secrets.SERVER_USER }}
           passphrase: ${{ secrets.SERVER_PASSPHRASE }}
           privateKey: ${{ secrets.SERVER_KEY}}
