@@ -20,6 +20,7 @@ jobs:
       - name: Push Image to Registry
         run: docker push docker.pkg.github.com/sharknoon/personal-site/personal-site:latest
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
       - name: Remove existing Container
@@ -29,8 +30,7 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           port: ${{ secrets.SERVER_PORT }}
           username: ${{ secrets.SERVER_USER }}
-          passphrase: ${{ secrets.SERVER_PASSPHRASE }}
-          privateKey: ${{ secrets.SERVER_KEY}}
+          password: ${{ secrets.SERVER_PASS }}
       - name: Start new Container
         uses: garygrossgarten/github-action-ssh@release
         with:
@@ -38,5 +38,4 @@ jobs:
           host: ${{ secrets.SERVER_HOST }}
           port: ${{ secrets.SERVER_PORT }}
           username: ${{ secrets.SERVER_USER }}
-          passphrase: ${{ secrets.SERVER_PASSPHRASE }}
-          privateKey: ${{ secrets.SERVER_KEY}}
+          password: ${{ secrets.SERVER_PASS }}
