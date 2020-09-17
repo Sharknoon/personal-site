@@ -19,3 +19,22 @@ jobs:
         
       - name: Push Image to Registry
         run: docker push docker.pkg.github.com/sharknoon/personal-site/personal-site:latest
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Remove existing Container
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: sudo docker stop personal-site; sudo docker rm personal-site; sudo docker rmi docker.pkg.github.com/sharknoon/personal-site/personal-site
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          passphrase: ${{ secrets.SERVER_PASSPHRASE }}
+          privateKey: ${{ secrets.SERVER_KEY}}
+      - name: Start new Container
+        uses: garygrossgarten/github-action-ssh@release
+        with:
+          command: sudo docker run -d --name personal-site --network traefik-net --restart=always docker.pkg.github.com/sharknoon/personal-site/personal-site
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          passphrase: ${{ secrets.SERVER_PASSPHRASE }}
+          privateKey: ${{ secrets.SERVER_KEY}}
