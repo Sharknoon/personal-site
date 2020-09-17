@@ -19,10 +19,10 @@ pipeline {
 
     stage('Deploy') {
       steps {
-        sh '''sudo docker stop personal-site || true
-sudo docker rm personal-site || true
-sudo docker rmi personal-site || true'''
-        sh 'sudo docker run -d --name personal-site --network traefik-net --restart=always docker.pkg.github.com/sharknoon/personal-site/personal-site'
+        sh '''docker stop personal-site || true
+docker rm personal-site || true
+docker rmi personal-site || true'''
+        sh 'docker run -d --name personal-site --network traefik-net --restart=always docker.pkg.github.com/sharknoon/personal-site/personal-site'
       }
     }
 
