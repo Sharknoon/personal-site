@@ -44,7 +44,7 @@ jobs:
       - name: Start new Container
         uses: garygrossgarten/github-action-ssh@release
         with:
-          command: sudo docker run -d --name personal-site --network traefik-net --restart=always docker.pkg.github.com/sharknoon/personal-site/personal-site
+          command: echo ${{ secrets.GHCR_PAT }} | docker login ghcr.io -u ${{ github.actor }} --password-stdin && sudo docker run -d --name personal-site --network traefik-net --restart=always docker.pkg.github.com/sharknoon/personal-site/personal-site
           host: ${{ secrets.SERVER_HOST }}
           port: ${{ secrets.SERVER_PORT }}
           username: ${{ secrets.SERVER_USER }}
