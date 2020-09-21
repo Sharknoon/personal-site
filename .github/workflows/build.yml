@@ -1,4 +1,4 @@
-name: Make my personal site fly 🚀
+name: Build & Deploy 🚀
 on:
   push:
     branches: [ master ]
