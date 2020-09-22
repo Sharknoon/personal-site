@@ -24,7 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Set SSH-Private Key
-        run: echo "${{ secrets.SERVER_KEY }}" >> ./.ssh/id_rsa
+        run: |
+          mkdir ./.ssh
+          echo "${{ secrets.SERVER_KEY }}" >> ./.ssh/id_rsa
                 
       - name: Login to Github Container Registry
         env:
