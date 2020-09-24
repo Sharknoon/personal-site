@@ -42,4 +42,4 @@ jobs:
       - name: Start new Container
         run: |
           sudo docker pull ghcr.io/sharknoon/personal-site
-          sudo docker run -d --name personal-site --network traefik-net --restart=always ghcr.io/sharknoon/personal-site
+          sudo docker run -d --name personal-site --network traefik-net -v pixina_config:/etc/nginx/conf.d --restart=always ghcr.io/sharknoon/personal-site
