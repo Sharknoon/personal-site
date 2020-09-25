@@ -22,15 +22,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps:
-      - name: Set SSH-Private Key
-        run: |
-          mkdir ~/.ssh
-          echo "${{ secrets.SERVER_KEY }}" >> ~/.ssh/id_rsa
-                
+    steps:    
       - name: Login to Github Container Registry
         env:
-          DOCKER_HOST: ssh://${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PORT }}
+          DOCKER_HOST: ssh://${{ secrets.SERVER_USER }}:"${{ secrets.SERVER_PASS }}"@${{ secrets.SERVER_HOST }}:${{ secrets.SERVER_PORT }}
         run: echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
         
       - name: Remove existing Container
