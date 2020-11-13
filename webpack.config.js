@@ -28,11 +28,7 @@ module.exports = {
                 use: [
                     'file-loader',
                 ],
-            },
-            {
-                test: /\.png$/,
-                type: 'asset/resource',
-            },
+            }
         ]
     }
 };
